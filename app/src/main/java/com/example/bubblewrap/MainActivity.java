@@ -9,19 +9,25 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.GridLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.gridlayout.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity {
     ImageView imageView;
     MediaPlayer mediaPlayer;
-    Handler handler = new Handler();
-    Runnable runnable;
 
 
+ public void refill(View view){
+     GridLayout gridLayout= findViewById(R.id.grid);
+     for(int i=0;i<gridLayout.getChildCount();i++){
+         ImageView image=(ImageView) gridLayout.getChildAt(i);
+         image.setImageResource(R.drawable.img_1);
+         image.setEnabled(true);
+     }
+
+ }
     public void pop(View view){
 
         imageView=(ImageView) view;
@@ -29,13 +35,23 @@ public class MainActivity extends AppCompatActivity {
         imageView.setImageResource(R.drawable.img_2);
         mediaPlayer.start();
         imageView.setEnabled(false);
-        imageView.postDelayed(new Runnable() {
-            public void run() {
-                imageView.setEnabled(true);
-                imageView.setImageResource(R.drawable.img_1);
-                Log.d(TAG,"resend1");
-            }
-        },2000);
+//        Timer buttonTimer = new Timer();
+//        buttonTimer.schedule(new TimerTask() {
+//
+//            @Override
+//            public void run() {
+//                runOnUiThread(new Runnable() {
+//
+//                    @Override
+//                    public void run() {
+//                        imageView.setEnabled(true);
+//                        imageView.setImageResource(R.drawable.img_1);
+//                        Log.d(TAG,"resend1");
+//                    }
+//                });
+//            }
+//        }, 2000);
+
 
     }
 
